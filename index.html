@@ -54,7 +54,7 @@
             <h2>Belum selesai dibaca</h2>
 
             <div id="incompleteBookshelfList" class="book_list">
-                
+
             </div>
         </section>
 
@@ -62,13 +62,24 @@
             <h2>Selesai dibaca</h2>
 
             <div id="completeBookshelfList" class="book_list">
-                
+
             </div>
         </section>
     </main>
 
     <script src="main.js"></script>
     <script>
+        window.onload = function () {
+            console.log("LOADED!!!");
+            let bookMine;
+            let total_item = Object.keys(localStorage);
+            for (let index = 0; index < total_item.length; index++) {
+                console.log(index + ' loop')
+                bookMine = JSON.parse(localStorage.getItem(total_item[index]));
+                appending_book(bookMine);
+            }
+        };
+
         let newBook;
         function insert_buku() {
             newBook = {
@@ -102,7 +113,7 @@
             // IF ELSE BUTTON BEDA TEXT INSIDE
             if (key.isComplete == true) {
                 buton1 = document.createElement("a");
-                buton1.setAttribute("onclick", "finish_read(" + key.id + ")");
+                buton1.setAttribute("onclick", "finish_read(" + key.id + "," + true + ")");
                 buton1.classList.add("green")
                 buton1.style.cursor = "pointer";
                 buton1.style.margin = "0px 3px 0px 0px";
@@ -120,13 +131,14 @@
 
                 articlemy = document.createElement("article");
                 articlemy.classList.add("book_item")
+                articlemy.setAttribute("id", key.id);
                 articlemy.append(h31, p1, p2, div1);
 
                 //MASUKIN ATAS
                 document.getElementById("completeBookshelfList").append(articlemy);
             } else {
                 buton1 = document.createElement("a");
-                buton1.setAttribute("onclick", "finish_read(" + key.id + ")");
+                buton1.setAttribute("onclick", "finish_read(" + key.id + "," + false + ")");
                 buton1.classList.add("green")
                 buton1.style.cursor = "pointer";
                 buton1.style.margin = "0px 3px 0px 0px";
@@ -144,12 +156,49 @@
 
                 articlemy = document.createElement("article");
                 articlemy.classList.add("book_item")
+                articlemy.setAttribute("id", key.id);
                 articlemy.append(h31, p1, p2, div1);
 
                 //MASUKIN BAWAH
                 document.getElementById("incompleteBookshelfList").append(articlemy);
             }
 
+        }
+
+        function finish_read(key, key2) {
+            let itemNew;
+            let item = JSON.parse(localStorage.getItem(key));
+            let choice = key2;
+
+            console.log(item.id + '_' + item.title + '_' + item.author + '_' + item.year + '_' + item.isComplete);
+            //IFELSE SEBALIKNYA
+            if (key2 == true) {
+                itemNew = {
+                    id: item.id,
+                    title: item.title,
+                    author: item.author,
+                    year: item.year,
+                    isComplete: false
+                };
+            } else {
+                itemNew = {
+                    id: item.id,
+                    title: item.title,
+                    author: item.author,
+                    year: item.year,
+                    isComplete: true
+                };
+            }
+            //DELETE DOM BASED ON ARTICLE ID
+            document.getElementById(key).remove();
+            appending_book(itemNew);
+            localStorage.setItem(key, JSON.stringify(itemNew));
+
+        }
+
+        function delete_read(key) {
+            localStorage.removeItem(key);
+            document.getElementById(key).remove();
         }
     </script>
 </body>
