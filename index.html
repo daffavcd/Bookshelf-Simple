@@ -19,39 +19,39 @@
     </header>
     <main>
         <section class="input_section">
-            <h2>Masukkan Buku Baru</h2>
+            <h2>Insert your book</h2>
             <form id="inputBook" onsubmit="return insert_buku()">
                 <div class="input">
-                    <label for="inputBookTitle">Judul</label>
+                    <label for="inputBookTitle">Title</label>
                     <input id="inputBookTitle" type="text" required>
                     <input type="hidden" id="inputBookId">
                 </div>
                 <div class="input">
-                    <label for="inputBookAuthor">Penulis</label>
+                    <label for="inputBookAuthor">Author</label>
                     <input id="inputBookAuthor" type="text" required>
                 </div>
                 <div class="input">
-                    <label for="inputBookYear">Tahun</label>
+                    <label for="inputBookYear">Year of publication</label>
                     <input id="inputBookYear" type="number" required>
                 </div>
                 <div class="input_inline">
-                    <label for="inputBookIsComplete">Selesai dibaca</label>
+                    <label for="inputBookIsComplete">Completed read</label>
                     <input id="inputBookIsComplete" type="checkbox">
                 </div>
-                <button id="bookSubmit" type="submit">Masukkan Buku</button>
+                <button id="bookSubmit" type="submit">Save</button>
             </form>
         </section>
 
         <section class="search_section">
-            <h2>Cari Buku (Opsional)</h2>
+            <h2>Find your book</h2>
             <form id="searchBook">
-                <label for="searchBookTitle">Judul</label>
+                <label for="searchBookTitle">Title</label>
                 <input id="searchBookTitle" onkeyup="find_buku()" type="text">
             </form>
         </section>
 
         <section class="book_shelf">
-            <h2>Belum selesai dibaca</h2>
+            <h2>Not yet completed</h2>
 
             <div id="incompleteBookshelfList" class="book_list">
 
@@ -59,7 +59,7 @@
         </section>
 
         <section class="book_shelf">
-            <h2>Selesai dibaca</h2>
+            <h2>Completed</h2>
 
             <div id="completeBookshelfList" class="book_list">
 

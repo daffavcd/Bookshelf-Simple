@@ -17,8 +17,9 @@ input, button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: cornflowerblue;
+    background-color: #795548;
     color: white;
+
 }
 
 main {
@@ -33,13 +34,14 @@ main {
     display: flex;
     flex-direction: column;
     padding: 16px;
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 }
 
 .input_section>h2 {
     text-align: center;
-    color: cornflowerblue;
+    color: #624c44;
 }
 
 .input_section>form>.input {
@@ -47,7 +49,7 @@ main {
 }
 
 .input_section>form>button {
-    background-color: cornflowerblue;
+    background-color: #795548;
     color: white;
     border: 0;
     border-radius: 5px;
@@ -65,13 +67,13 @@ main {
     display: block;
     width: 100%;
     padding: 8px;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 
 
 .input_section>form>.input>label {
-    color: cornflowerblue;
+    color: #795548;
     font-weight: bold;
 }
 
@@ -82,7 +84,7 @@ main {
 }
 
 .input_section>form>.input_inline>label {
-    color: cornflowerblue;
+    color: #795548;
     font-weight: bold;
     margin-right: 10px;
 }
@@ -93,12 +95,13 @@ main {
     flex-direction: column;
     align-items: center;
     padding: 16px;
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 }
 
 .search_section>h2 {
-    color: cornflowerblue;
+    color: #624c44;
 }
 
 .search_section>form {
@@ -116,7 +119,7 @@ main {
 
 .search_section>form>input {
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .search_section>form>button {
@@ -129,13 +132,14 @@ main {
 
 .book_shelf {
     margin: 16px 0 0 0;
-    border: 1px solid black;
     padding: 16px;
-    border-radius: 10px;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 }
 
 .book_shelf>h2 {
-    color: cornflowerblue;
+    color: #624c44;
 }
 
 .book_shelf>.book_list {
@@ -144,9 +148,11 @@ main {
 
 .book_shelf>.book_list>.book_item {
     padding: 8px 16px 16px 16px;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 2px solid #957474;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
     margin: 10px 0;
+
 }
 
 .book_shelf>.book_list>.book_item>h3, p {

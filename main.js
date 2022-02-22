@@ -44,7 +44,7 @@ function edit_book(key) {
     } else {
         document.getElementById("inputBookIsComplete").checked = false;
     }
-    document.querySelector('#bookSubmit').innerText = 'Update bukumu';
+    document.querySelector('#bookSubmit').innerText = 'Update';
 }
 
 
@@ -75,7 +75,7 @@ function insert_buku() {
         document.getElementById(itemNew.id).remove();
         appending_book(itemNew);
         localStorage.setItem(itemNew.id, JSON.stringify(itemNew));
-        document.querySelector('#bookSubmit').innerText = 'Masukkan Buku';
+        document.querySelector('#bookSubmit').innerText = 'Save';
 
     } else {
         newBook = {
@@ -125,20 +125,20 @@ function appending_book(key) {
         buton1.classList.add("green")
         buton1.style.cursor = "pointer";
         buton1.style.margin = "0px 3px 0px 0px";
-        buton1.innerText = "Belum selesai dibaca";
+        buton1.innerText = "Not yet completed";
 
         buton2 = document.createElement("a");
         buton2.setAttribute("onclick", "delete_read(" + key.id + ")");
         buton2.classList.add("red")
         buton2.style.cursor = "pointer";
-        buton2.innerText = "Hapus buku";
+        buton2.innerText = "Delete";
 
         buton3 = document.createElement("a");
         buton3.setAttribute("onclick", "edit_book(" + key.id + ")");
         buton3.classList.add("yellow")
         buton3.style.cursor = "pointer";
         buton3.style.margin = "0px 3px 0px 0px";
-        buton3.innerText = "Edit buku";
+        buton3.innerText = "Edit";
 
         div1 = document.createElement("div");
         div1.classList.add("action")
@@ -157,20 +157,20 @@ function appending_book(key) {
         buton1.classList.add("green")
         buton1.style.cursor = "pointer";
         buton1.style.margin = "0px 3px 0px 0px";
-        buton1.innerText = "Selesai dibaca";
+        buton1.innerText = "Completed";
 
         buton2 = document.createElement("a");
         buton2.setAttribute("onclick", "delete_read(" + key.id + ")");
         buton2.classList.add("red")
         buton2.style.cursor = "pointer";
-        buton2.innerText = "Hapus buku";
+        buton2.innerText = "Delete";
 
         buton3 = document.createElement("a");
         buton3.setAttribute("onclick", "edit_book(" + key.id + ")");
         buton3.classList.add("yellow")
         buton3.style.cursor = "pointer";
         buton3.style.margin = "0px 3px 0px 0px";
-        buton3.innerText = "Edit buku";
+        buton3.innerText = "Edit";
 
         div1 = document.createElement("div");
         div1.classList.add("action")
