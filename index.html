@@ -24,6 +24,7 @@
                 <div class="input">
                     <label for="inputBookTitle">Judul</label>
                     <input id="inputBookTitle" type="text" required>
+                    <input type="hidden" id="inputBookId">
                 </div>
                 <div class="input">
                     <label for="inputBookAuthor">Penulis</label>
@@ -37,7 +38,7 @@
                     <label for="inputBookIsComplete">Selesai dibaca</label>
                     <input id="inputBookIsComplete" type="checkbox">
                 </div>
-                <button id="bookSubmit" type="submit">Masukkan Buku ke rak <span>Belum selesai dibaca</span></button>
+                <button id="bookSubmit" type="submit">Masukkan Buku</button>
             </form>
         </section>
 
@@ -71,6 +72,26 @@
     <script>
         window.onload = function () {
             console.log("LOADED!!!");
+            get_all_book();
+        };
+
+        function edit_book(key) {
+            let item = JSON.parse(localStorage.getItem(key));
+            document.getElementById("inputBookId").value = item.id;
+            document.getElementById("inputBookTitle").value = item.title;
+            document.getElementById("inputBookAuthor").value = item.author;
+            document.getElementById("inputBookYear").value = item.year;
+
+            if (item.isComplete == true) {
+                document.getElementById("inputBookIsComplete").checked = true;
+            } else {
+                document.getElementById("inputBookIsComplete").checked = false;
+            }
+            document.querySelector('#bookSubmit').innerText = 'Update bukumu';
+        }
+
+
+        function get_all_book() {
             let bookMine;
             let total_item = Object.keys(localStorage);
             for (let index = 0; index < total_item.length; index++) {
@@ -78,21 +99,50 @@
                 bookMine = JSON.parse(localStorage.getItem(total_item[index]));
                 appending_book(bookMine);
             }
-        };
+        }
 
         let newBook;
         function insert_buku() {
-            newBook = {
-                id: Date.now(),
-                title: document.getElementById("inputBookTitle").value,
-                author: document.getElementById("inputBookAuthor").value,
-                year: document.getElementById("inputBookYear").value,
-                isComplete: document.getElementById("inputBookIsComplete").checked
-            };
-            console.log(newBook.id + '_' + newBook.title + '_' + newBook.author + '_' + newBook.year + '_' + newBook.isComplete);
-            localStorage.setItem(newBook.id, JSON.stringify(newBook));
-            appending_book(newBook);
+            //IF ELSE UPDATE
+            inputBookId = document.getElementById("inputBookId").value;
+            if (inputBookId != "") {
+                let itemNew;
+                let item = JSON.parse(localStorage.getItem(inputBookId));
+                itemNew = {
+                    id: item.id,
+                    title: document.getElementById("inputBookTitle").value,
+                    author: document.getElementById("inputBookAuthor").value,
+                    year: document.getElementById("inputBookYear").value,
+                    isComplete: document.getElementById("inputBookIsComplete").checked
+                };
+                document.getElementById(itemNew.id).remove();
+                appending_book(itemNew);
+                localStorage.setItem(itemNew.id, JSON.stringify(itemNew));
+                document.querySelector('#bookSubmit').innerText = 'Masukkan Buku';
+
+            } else {
+                newBook = {
+                    id: Date.now(),
+                    title: document.getElementById("inputBookTitle").value,
+                    author: document.getElementById("inputBookAuthor").value,
+                    year: document.getElementById("inputBookYear").value,
+                    isComplete: document.getElementById("inputBookIsComplete").checked
+                };
+                console.log(newBook.id + '_' + newBook.title + '_' + newBook.author + '_' + newBook.year + '_' + newBook.isComplete);
+                localStorage.setItem(newBook.id, JSON.stringify(newBook));
+                appending_book(newBook);
+
+            }
+            nulling_everything();
             return false;
+        }
+
+        function nulling_everything() {
+            document.getElementById("inputBookId").value = "";
+            document.getElementById("inputBookTitle").value = "";
+            document.getElementById("inputBookAuthor").value = "";
+            document.getElementById("inputBookYear").value = "";
+            document.getElementById("inputBookIsComplete").checked = false;
         }
 
         function appending_book(key) {
@@ -107,6 +157,7 @@
 
             let buton1;
             let buton2;
+            let buton3;
             let div1;
             let articlemy;
 
@@ -125,9 +176,16 @@
                 buton2.style.cursor = "pointer";
                 buton2.innerText = "Hapus buku";
 
+                buton3 = document.createElement("a");
+                buton3.setAttribute("onclick", "edit_book(" + key.id + ")");
+                buton3.classList.add("yellow")
+                buton3.style.cursor = "pointer";
+                buton3.style.margin = "0px 3px 0px 0px";
+                buton3.innerText = "Edit buku";
+
                 div1 = document.createElement("div");
                 div1.classList.add("action")
-                div1.append(buton1, buton2);
+                div1.append(buton1, buton3, buton2);
 
                 articlemy = document.createElement("article");
                 articlemy.classList.add("book_item")
@@ -150,9 +208,16 @@
                 buton2.style.cursor = "pointer";
                 buton2.innerText = "Hapus buku";
 
+                buton3 = document.createElement("a");
+                buton3.setAttribute("onclick", "edit_book(" + key.id + ")");
+                buton3.classList.add("yellow")
+                buton3.style.cursor = "pointer";
+                buton3.style.margin = "0px 3px 0px 0px";
+                buton3.innerText = "Edit buku";
+
                 div1 = document.createElement("div");
                 div1.classList.add("action")
-                div1.append(buton1, buton2);
+                div1.append(buton1, buton3, buton2);
 
                 articlemy = document.createElement("article");
                 articlemy.classList.add("book_item")
